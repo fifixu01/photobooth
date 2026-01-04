@@ -9,19 +9,92 @@
   <main class="container">
     <h1>Simple Photobooth</h1>
 
-    <section class="camera-section">
-      <div class="video-wrapper">
-        <video id="video" autoplay playsinline></video>
-      </div>
-      <div class="controls">
-        <button id="capture-btn">📸 Take Photo</button>
-        <p id="status"></p>
-      </div>
+    <!-- STEP 1: Camera & Review -->
+    <section id="step-camera" class="step active">
+      <section class="camera-section">
+        <div class="camera-layout">
+          <div class="video-wrapper">
+            <video id="video" autoplay playsinline></video>
+          </div>
+
+          <div class="camera-side-panel">
+            <div class="controls">
+              <button id="capture-btn">📸 Take Photo</button>
+              <p id="status"></p>
+            </div>
+
+            <button id="build-strip-start" class="secondary-btn">
+              🎞️ Build my photo strip!
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Review Photos Section -->
+      <section class="photos-section">
+        <h2>Review Photos</h2>
+
+        <div class="review-layout">
+          <!-- Large preview / selected photo -->
+          <div class="selected-photo-panel">
+            <div id="selected-photo-container" class="selected-photo-placeholder">
+              <p>No photo selected yet. Click a thumbnail below.</p>
+            </div>
+            <button id="download-selected-btn" disabled>
+              ⬇️ Download Selected Photo
+            </button>
+          </div>
+
+          <!-- Thumbnails grid -->
+          <div id="photos" class="photos-grid"></div>
+        </div>
+      </section>
     </section>
 
-    <section class="photos-section">
-      <h2>Captured Photos</h2>
-      <div id="photos" class="photos-grid"></div>
+    <!-- STEP 2: Choose 2-frame or 4-frame -->
+    <section id="step-choose-strip" class="step">
+      <h2>Choose your photo strip</h2>
+      <p class="step-description">
+        How many frames do you want in your strip?
+      </p>
+
+      <div class="choose-buttons">
+        <button class="mode-btn" data-frames="2">2-frame strip</button>
+        <button class="mode-btn" data-frames="4">4-frame strip</button>
+      </div>
+
+      <button id="back-to-camera-from-choose" class="link-btn">
+        ← Back to camera
+      </button>
+    </section>
+
+    <!-- STEP 3: Select photos & build strip -->
+    <section id="step-build-strip" class="step">
+      <h2>Build your strip</h2>
+      <p class="step-description">
+        Select up to <span id="strip-frame-count-label">2</span> photos for your strip.
+      </p>
+
+      <p id="strip-select-status" class="hint-text"></p>
+
+      <!-- Thumbnails to choose from for the strip -->
+      <div id="strip-select-grid" class="photos-grid strip-select-grid"></div>
+
+      <!-- Build & preview strip -->
+      <div class="strip-actions">
+        <button id="build-strip-btn">✨ Build Strip</button>
+        <button id="download-strip-btn" disabled>⬇️ Download Strip PNG</button>
+      </div>
+
+      <p id="strip-status" class="hint-text"></p>
+
+      <div class="strip-canvas-wrapper">
+        <canvas id="strip-canvas"></canvas>
+      </div>
+
+      <button id="back-to-choose-from-build" class="link-btn">
+        ← Back to frame selection
+      </button>
     </section>
   </main>
 
